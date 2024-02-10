@@ -1,6 +1,7 @@
 #ifndef _MY_MAT_H_
 #define _MY_MAT_H_
 
+#define GRAPH_SIZE 10
 #define WEIGHT_BAG 20
 #define SIZE 5
 
