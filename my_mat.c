@@ -1,13 +1,13 @@
 #include "my_mat.h"
 
-int ifPathRec(int graph[10][10], int start, int end, int check);
+int ifPathRec(int graph[GRAPH_SIZE][GRAPH_SIZE], int start, int end, int check);
 int max(int x, int y);
 
-void putInValues(int graph[10][10]){ //Create a new matrix with the values the user in.
+void putInValues(int graph[GRAPH_SIZE][GRAPH_SIZE]){ //Create a new matrix with the values the user in.
     int value = 0;
 
-    for(int i=0; i<10; i++){
-        for(int j=0; j<10; j++){
+    for(int i=0; i<GRAPH_SIZE; i++){
+        for(int j=0; j<GRAPH_SIZE; j++){
             scanf("%d", &value);
             graph[i][j] = value;
         }
@@ -15,7 +15,7 @@ void putInValues(int graph[10][10]){ //Create a new matrix with the values the u
 } 
 
 
-void ifPathItoJ(int graph[10][10]){ //Retuen 1=true or 0=false.
+void ifPathItoJ(int graph[GRAPH_SIZE][GRAPH_SIZE]){ //Retuen 1=true or 0=false.
     int i = 0;
     int j = 0;
     int check = 0;
@@ -31,7 +31,7 @@ void ifPathItoJ(int graph[10][10]){ //Retuen 1=true or 0=false.
     }
 }
 
-int ifPathRec(int graph[10][10], int start, int end, int check){
+int ifPathRec(int graph[GRAPH_SIZE][GRAPH_SIZE], int start, int end, int check){
 
     if(start == end){
         if(check == -1){
@@ -42,7 +42,7 @@ int ifPathRec(int graph[10][10], int start, int end, int check){
         }
     }
 
-    for(int k=0; k<10; k++){ //Check if there is another path.
+    for(int k=0; k<GRAPH_SIZE; k++){ //Check if there is another path.
         if(start!=k && k!=end){
             if(graph[start][k] != 0){
                 return ifPathRec(graph, k, end, check);
@@ -55,7 +55,7 @@ int ifPathRec(int graph[10][10], int start, int end, int check){
 }
 
 
-void shortestPath(int graph[10][10]){
+void shortestPath(int graph[GRAPH_SIZE][GRAPH_SIZE]){
     int i = 0;
     int j = 0;
     int check = 0;
@@ -68,9 +68,9 @@ void shortestPath(int graph[10][10]){
         printf("-1");
     }
     else{ //Let's check the shortest path fron i to j.
-        for(int k=0; k<10; k++){
-            for(int i=0; i<10; i++){
-              for(int j=0; j<10; j++){
+        for(int k=0; k<GRAPH_SIZE; k++){
+            for(int i=0; i<GRAPH_SIZE; i++){
+              for(int j=0; j<GRAPH_SIZE; j++){
                     if(graph[i][j] > graph[i][k]+graph[k][j]){
                         graph[i][j] = graph[i][k]+graph[k][j];
                     }
