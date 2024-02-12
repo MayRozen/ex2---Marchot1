@@ -5,7 +5,7 @@ CFLAGS = -Wall -g
 all: my_graph my_Knapsack
 
 libmy_mat.a: my_mat.o
-	$(AR) -rcs libmy_mat.a my_mat.o
+	$(AR) rcs libmy_mat.a my_mat.o
 
 my_mat.o: my_mat.c my_mat.h
 	$(CC) $(CFLAGS) -c my_mat.c
