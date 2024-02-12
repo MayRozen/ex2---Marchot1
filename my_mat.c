@@ -35,10 +35,10 @@ void ifPathItoJ(int graph[][GRAPH_SIZE]){
     scanf("%d %d", &i, &j);
 
     if(graph[i][j] != 0){ //There is a path.
-        printf("1\n"); //true
+        printf("True\n"); //true
     }
     else{
-        printf("0\n"); //false
+        printf("False\n"); //false
     }
 }
 
