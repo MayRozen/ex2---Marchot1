@@ -58,16 +58,15 @@ void shortestPath(int graph[][GRAPH_SIZE]){
 
 int knapSack(int weights[], int values[], int selected_bool[]){ //Question 2.
 
-    //int maxValue = 0; //The maximum value of the items.
-    int table[SIZE][WEIGHT_BAG];
+    int table[SIZE+1][WEIGHT_BAG+1] = {0};
 
-    for(int i=0; i<SIZE; i++){
-        for(int j=0; j<WEIGHT_BAG; j++){
+    for(int i=0; i<=SIZE; i++){
+        for(int j=0; j<=WEIGHT_BAG; j++){
 
             if(i==0 || j==0){
                 table[i][j] = 0; //There isn't any item in our bag.
             }
-            else if(j <= weights[i-1]){ //The item's weight now is lower.
+            else if(weights[i-1] <= j){ //The item's weight now is lower.
                 table[i][j] = max(values[i-1]+table[i-1][j-1], table[i-1][j]);
             }
             else{
@@ -79,15 +78,15 @@ int knapSack(int weights[], int values[], int selected_bool[]){ //Question 2.
     int value = table[SIZE][WEIGHT_BAG];
     int w = WEIGHT_BAG;
 
-    for(int i=SIZE; i>0; i--){
+    for(int i=SIZE; i>0 && value>0; i--){
         if(value != table[i-1][w]){ //The sum of the values now is different.
-            selected_bool[i] = 1;
+            selected_bool[i-1] = 1;
             value = value - values[i-1];
             w = w - weights[i-1];
         }
     }
 
-    return table[SIZE][WEIGHT_BAG];
+    return table[SIZE][WEIGHT_BAG]; //Maximum value.
 } 
 
 int max(int x, int y){
