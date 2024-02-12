@@ -1,97 +1,64 @@
+#include <stdio.h>
 #include "my_mat.h"
 
-int ifPathRec(int graph[GRAPH_SIZE][GRAPH_SIZE], int start, int end, int check);
 int max(int x, int y);
 
-void putInValues(int graph[GRAPH_SIZE][GRAPH_SIZE]){ //Create a new matrix with the values the user in.
-    int value = 0;
+void putInValues(int graph[][GRAPH_SIZE]){ //Create a new matrix with the values the user in.
 
     for(int i=0; i<GRAPH_SIZE; i++){
         for(int j=0; j<GRAPH_SIZE; j++){
-            scanf("%d", &value);
-            graph[i][j] = value;
-        }
-    }
-} 
-
-
-void ifPathItoJ(int graph[GRAPH_SIZE][GRAPH_SIZE]){ //Retuen 1=true or 0=false.
-    int i = 0;
-    int j = 0;
-    int check = 0;
-
-    scanf("%d %d", &i, &j);
-    int ans = ifPathRec(graph, i, j, check);
-
-    if(ans == 1){ //If this value is 0 so there is no path from i to j.
-        printf("True");
-    }
-    else{
-        printf("False");
-    }
-}
-
-int ifPathRec(int graph[GRAPH_SIZE][GRAPH_SIZE], int start, int end, int check){
-
-    if(start == end){
-        if(check == -1){
-            return 0; //The path isn't continuous.
-        }
-        else{
-            return 1; //The path is continuous or there is a one adge from "start" to "end".
-        }
-    }
-
-    for(int k=0; k<GRAPH_SIZE; k++){ //Check if there is another path.
-        if(start!=k && k!=end){
-            if(graph[start][k] != 0){
-                return ifPathRec(graph, k, end, check);
-            }
-            else{ //If there is a "fracture" during the path from start to end.
-                check = -1;
-            }
+            scanf("%d", &graph[i][j]);
         }
     }
 }
 
-
-void shortestPath(int graph[GRAPH_SIZE][GRAPH_SIZE]){
-    int i = 0;
-    int j = 0;
-    int check = 0;
-    int ans = 0;
-
-    scanf("%d %d", &i, &j); 
-    putInValues(graph);
-
-    if(ifPathRec(graph, i, j, check) == 0){ //There isn't a path from i to j.
-        printf("-1");
-    }
-    else{ //Let's check the shortest path fron i to j.
-        for(int k=0; k<GRAPH_SIZE; k++){
-            for(int i=0; i<GRAPH_SIZE; i++){
-              for(int j=0; j<GRAPH_SIZE; j++){
-                    if(graph[i][j] > graph[i][k]+graph[k][j]){
-                        graph[i][j] = graph[i][k]+graph[k][j];
-                    }
+void floydWarshall(int graph[][GRAPH_SIZE]){
+    for(int k=0; k<GRAPH_SIZE; k++){
+        for(int i=0; i<GRAPH_SIZE; i++){
+          for(int j=0; j<GRAPH_SIZE; j++){
+                if((graph[i][j]==0) && (i!=j) && (graph[i][k]!=0) && (graph[k][j]!=0)){ //The first time we found that there is any path.
+                    graph[i][j] = graph[i][k]+graph[k][j];
+                }
+                else if((graph[i][k]!=0) && (graph[k][j]!=0) && (graph[i][j]>graph[i][k]+graph[k][j]) ){ //There is a better path.
+                    graph[i][j] = graph[i][k]+graph[k][j];
                 }
             }
         }
     }
+}
 
-    if(ans == 0){ //There is a path.
-        if(graph[i][j]<graph[j][i]){
-            printf("%d\n", graph[i][j]);
-        }
-        else{
-            printf("%d\n", graph[j][i]);
-        }
+
+void ifPathItoJ(int graph[][GRAPH_SIZE]){
+    int i = 0;
+    int j = 0;
+
+    scanf("%d %d", &i, &j);
+
+    if(graph[i][j] != 0){ //There is a path.
+        printf("1\n"); //true
+    }
+    else{
+        printf("0\n"); //false
     }
 }
 
+void shortestPath(int graph[][GRAPH_SIZE]){
+    int i = 0;
+    int j = 0;
+
+    scanf("%d %d", &i, &j); 
+    if(graph[i][j] != 0){
+        printf("%d\n", graph[i][j]);
+    }
+    else{
+        printf("-1\n");
+    }
+}
+
+
 int knapSack(int weights[], int values[], int selected_bool[]){ //Question 2.
 
-    int maxValue = 0; //The maximum value of the items.
+    //int maxValue = 0; //The maximum value of the items.
     int table[SIZE][WEIGHT_BAG];
 
     for(int i=0; i<SIZE; i++){
