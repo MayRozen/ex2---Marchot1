@@ -25,9 +25,11 @@ int main(){
             break;
         case 'D':
 
+            exit();
             break;
         case EOF:
 
+            exit();     
             break;
         default:
             break;
