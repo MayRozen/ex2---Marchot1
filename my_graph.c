@@ -23,11 +23,17 @@ int main(){
             shortestPath(graph);
 
             break;
+        case 'D':
+
+            break;
+        case EOF:
+
+            break;
         default:
             break;
         } 
     }
-    while(input != 'D' || input != EOF);
+    while(1);
     
 return 0;
 }
