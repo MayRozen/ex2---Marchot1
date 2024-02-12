@@ -3,8 +3,6 @@
 #include <stdbool.h>
 #include "my_mat.h"
 
-void printItems(int selected_bool[], char items[]);
-
 int main(){
     char items[SIZE+1] = ""; //6 because "\0".
     int weights[SIZE] = {0};
@@ -30,18 +28,13 @@ int main(){
 
     printf("Maximum profit: %d\n", maxValue);
     printf("Selected items:");
-    printItems(selected_bool, items);
-
-    return 0;
-}
-
-void printItems(int selected_bool[], char items[]){ //Prints the chosen items.
-    
     for(int i=0; i<SIZE; i++){
         if(selected_bool[i] == 1){
             printf(" %c", items[i]);
         }
     }
+
+    return 0;
 }
 
 
