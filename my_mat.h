@@ -5,14 +5,15 @@
 #define WEIGHT_BAG 20
 #define SIZE 5
 
-void putInValues(int graph[10][10]); //Create a new matrix with the values the user in.
+void putInValues(int graph[][GRAPH_SIZE]); //Create a new matrix with the values the user in.
 
-void ifPathItoJ(int graph[10][10]); //Retuen 1=true or 0=false.
+void floydWarshall(int graph[][GRAPH_SIZE]);
 
-void shortestPath(int graph[10][10]); //Print the shortest path between i and j.
+void ifPathItoJ(int graph[][GRAPH_SIZE]); //Retuen 1=true or 0=false.
+
+void shortestPath(int graph[][GRAPH_SIZE]); //Print the shortest path between i and j.
 
 int knapSack(int weights[], int values[], int selected_bool[]); //Question 2.
 
 
 #endif
-
