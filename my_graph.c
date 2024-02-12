@@ -1,26 +1,35 @@
 #include <stdio.h>
 #include "my_mat.h"
-#include "my_mat.c"
 
 int main(){
-    char input = 'z';
+
+    char input;
     int graph[GRAPH_SIZE][GRAPH_SIZE];
 
-    printf("Please enter A, B or C to start or D or EOF if tou want to get out:");
-    
-    while(input != 'D' || input != EOF){
-        input = getchar();
-        if(input == 'A'){
+    do{
+        scanf(" %c", &input);
+        switch (input)
+        {
+        case 'A':
             putInValues(graph);
-        }
-        else if(input =='B'){
+            floydWarshall(graph);
+            
+            break;
+        case 'B':
             ifPathItoJ(graph);
-        }
-        else if(input =='C'){
-            shortestPath(graph);
-        }
-    }
 
+            break;
+        case 'C':
+            shortestPath(graph);
+
+            break;
+        default:
+            break;
+        } 
+    }
+    while(input != 'D' /*|| input != EOF*/);
+    
+return 0;
 }
 
 
