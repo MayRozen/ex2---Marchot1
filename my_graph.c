@@ -27,7 +27,7 @@ int main(){
             break;
         } 
     }
-    while(input != 'D' || input != EOF);
+    while(input != 'D' /*|| input != EOF*/);
     
 return 0;
 }
