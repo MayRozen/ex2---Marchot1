@@ -30,7 +30,7 @@ int main(){
     printf("Selected items:");
     for(int i=0; i<SIZE; i++){
         if(selected_bool[i] == 1){
-            printf(" %c", items[i]);
+            printf("%c", items[i]);
         }
     }
 
