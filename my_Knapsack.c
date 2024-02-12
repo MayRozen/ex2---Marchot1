@@ -4,33 +4,26 @@
 #include "my_mat.h"
 
 int main(){
-    char items[SIZE+1] = ""; //6 because "\0".
+    char items[SIZE] = "";
     int weights[SIZE] = {0};
     int values[SIZE] = {0};
     int selected_bool[SIZE] = {0};
 
-    int val = 0;
-    int w = 0;
-
     for(int i=0; i<SIZE; i++){
 
-        char item = getchar();
-        items[i] = item;
-
-        scanf("%d", &val);
-        values[i] = val;
-
-        scanf("%d", &w);
-        weights[i] = w;
+        scanf(" %c", &items[i]);
+        scanf(" %d", &values[i]);
+        scanf(" %d", &weights[i]);
     }
 
     int maxValue = knapSack(weights, values, selected_bool);
 
     printf("Maximum profit: %d\n", maxValue);
     printf("Selected items:");
+
     for(int i=0; i<SIZE; i++){
         if(selected_bool[i] == 1){
-            printf("%c", items[i]);
+            printf(" %c", items[i]);
         }
     }
 
