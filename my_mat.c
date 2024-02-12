@@ -67,7 +67,7 @@ int knapSack(int weights[], int values[], int selected_bool[]){ //Question 2.
                 table[i][j] = 0; //There isn't any item in our bag.
             }
             else if(weights[i-1] <= j){ //The item's weight now is lower.
-                table[i][j] = max(values[i-1]+table[i-1][j-1], table[i-1][j]);
+                table[i][j] = max(values[i-1]+table[i-1][j-weights[i-1]], table[i-1][j]);
             }
             else{
                 table[i][j] = table[i-1][j]; //The former valuse was higher.
