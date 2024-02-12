@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdbool.h>
 #include "my_mat.h"
-#include "my_mat.c"
 
 char* printItems(int selected_bool[], char items[], char result[]);
 
