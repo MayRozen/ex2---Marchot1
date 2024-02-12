@@ -3,8 +3,7 @@
 #include <stdbool.h>
 #include "my_mat.h"
 
-char* printItems(int selected_bool[], char items[], char result[]);
-
+void printItems(int selected_bool[], char items[]);
 
 int main(){
     char items[SIZE+1] = ""; //6 because "\0".
@@ -16,39 +15,33 @@ int main(){
     int w = 0;
 
     for(int i=0; i<SIZE; i++){
-        printf("Enter item:");
+
         char item = getchar();
         items[i] = item;
 
-        printf("Enter it's value:");
         scanf("%d", &val);
         values[i] = val;
 
-        printf("Enter it's weight:");
         scanf("%d", &w);
         weights[i] = w;
-
     }
 
     int maxValue = knapSack(weights, values, selected_bool);
-    char result[maxValue];
 
-    printItems(selected_bool, items, result);
-    printf("The max value is:%d\n", maxValue);
+    printf("Maximum profit: %d\n", maxValue);
+    printf("Selected items:");
+    printItems(selected_bool, items);
 
     return 0;
 }
 
-char* printItems(int selected_bool[], char items[], char result[]){ //Prints the chosen items and init them to "result".
-
+void printItems(int selected_bool[], char items[]){ //Prints the chosen items.
+    
     for(int i=0; i<SIZE; i++){
         if(selected_bool[i] == 1){
             printf(" %c", items[i]);
-            result[i] = items[i];
         }
     }
-
-    return result;
 }
 
 
