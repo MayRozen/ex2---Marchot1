@@ -58,6 +58,7 @@ void shortestPath(int graph[][GRAPH_SIZE]){
 int knapSack(int weights[], int values[], int selected_bool[]){ //Question 2.
 
     int table[SIZE+1][WEIGHT_BAG+1] = {0};
+    int w = WEIGHT_BAG;
     int ans = 0;
 
     for(int i=0; i<=SIZE; i++){
@@ -75,12 +76,10 @@ int knapSack(int weights[], int values[], int selected_bool[]){ //Question 2.
         }
     }
 
-    int w = WEIGHT_BAG;
-
     for(int i=SIZE; i>0; i--){
         if(table[i][w] != table[i-1][w]){ //The sum of the values now is different.
-            ans = ans + values[i-1];
-            w = w - weights[i-1];
+            ans += values[i-1];
+            w -= weights[i-1];
             selected_bool[i-1] = 1;
         }
     }
